@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="h-screen p-8 pt-20 w-[380px] flex flex-col gap-4">
+    <div className="h-screen p-8 pt-20 w-[320px] flex flex-col gap-4">
       <img src={userImage} className="mx-auto mb-6" alt="" />
-      <div className="text-3xl flex flex-col gap-4">
+      <div className="text-2xl flex flex-col gap-4">
         <NavLink
           to={"/dashboard/"}
           className="border-b border-white text-gray-dark"

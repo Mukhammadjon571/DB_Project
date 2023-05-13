@@ -8,6 +8,7 @@ import Patient from "../pages/Patient";
 import Prescription from "../pages/Prescription";
 import Appointment from "../pages/Appointment";
 import Payment from "../pages/Payment";
+import AppointmentForm from "../pages/Appointment/AppointmentForm";
 
 const Router = () => {
   return (
@@ -19,6 +20,7 @@ const Router = () => {
         <Route path="patient" element={<Patient />} />
         <Route path="prescription" element={<Prescription />} />
         <Route path="appointment" element={<Appointment />} />
+        <Route path="appointment/add" element={<AppointmentForm />} />
         <Route path="payment" element={<Payment />} />
       </Route>
     </Routes>

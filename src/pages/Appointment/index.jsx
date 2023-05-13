@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ContentHeader from "../../components/container/ContentHeader";
 import Button from "../../components/ui/Button";
-import { deleted, edit, view } from "../../assets/images";
+import { deleted, view } from "../../assets/images";
+import { NavLink } from "react-router-dom";
 
 const Appointment = () => {
+  // Malumotni saqlash usestate bilan bo'ladi
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    // bu page ochilsa ishga tushadigan funksiya
+    fetch("https://someapi.com", {
+      method: "GET",
+      headers: { auth: "ss" },
+    })
+      .then((res) => (res.ok ? res.json() : Error("")))
+      .then((malumot) => setData(malumot));
+  }, []);
+
   return (
     <div>
       <ContentHeader>
-        Appointment List <span className="grow"></span> <Button>Add</Button>
+        Appointment List <span className="grow"></span>{" "}
+        <NavLink to="add">
+          <Button>Add</Button>
+        </NavLink>
       </ContentHeader>
       <table className="border w-full" border>
         <tr className="border-b">
@@ -19,10 +36,12 @@ const Appointment = () => {
           <th className="border-l p-5">Actions </th>
         </tr>
         {Array(12)
-          .fill("")
+          .fill("") // shuni orniga data.map() qilasiz, men fake 12 array length yasagandim
           .map((i) => (
             <tr className="border-b">
-              <th className="border-l p-5">d123</th>
+              <th className="border-l p-5">d123 
+              {/* {i.name } bolishi mumkin */}
+              </th>
               <th className="border-l p-5">Davinchi</th>
               <th className="border-l p-5">995995324</th>
               <th className="border-l p-5">8:30</th>
