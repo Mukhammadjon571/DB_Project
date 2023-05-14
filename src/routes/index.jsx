@@ -9,6 +9,7 @@ import Prescription from "../pages/Prescription";
 import Appointment from "../pages/Appointment";
 import Payment from "../pages/Payment";
 import AppointmentForm from "../pages/Appointment/AppointmentForm";
+import PatientForm from "../pages/Patient/PatientForm";
 
 const Router = () => {
   return (
@@ -17,10 +18,13 @@ const Router = () => {
       <Route path="dashboard" element={<DashboardContainer />}>
         <Route index element={<Dashboard />} />
         <Route path="schedule" element={<Schedule />} />
+        {/* <Route path="schedule" element={<ScheduleForm />} /> */}
         <Route path="patient" element={<Patient />} />
+        <Route path="patient/add" element={<PatientForm />} />
         <Route path="prescription" element={<Prescription />} />
         <Route path="appointment" element={<Appointment />} />
         <Route path="appointment/add" element={<AppointmentForm />} />
+        <Route path="prescription/add" element={<AppointmentForm />} />
         <Route path="payment" element={<Payment />} />
       </Route>
     </Routes>

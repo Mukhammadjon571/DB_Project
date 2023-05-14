@@ -36,7 +36,7 @@ const AppointmentForm = () => {
     <form onSubmit={onSubmit}>
       {/* title kerak bob qolsa shu component dan foydalanasiz */}
       <ContentHeader>
-        Forma <span className="grow"></span>{" "}
+        Appointment <span className="grow"></span>{" "}
         <Button onClick={() => navigate(-1)}>Ortga</Button>
       </ContentHeader>
       {/* Buyogi inputlar */}

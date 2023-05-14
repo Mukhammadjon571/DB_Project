@@ -1,9 +1,23 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import ContentHeader from "../../components/container/ContentHeader";
 import Button from "../../components/ui/Button";
 import { deleted, edit, view } from "../../assets/images";
 
 const Payment = () => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // bu page ochilsa ishga tushadigan funksiya
+    var requestOptions = {
+      method: 'GET',
+    };
+    
+    fetch("https://rustammustafoev.jprq.live/api/e-med/payment/history/", requestOptions)
+      .then(response => response.json())
+      .then(result => setData(result.results))
+  }, []);
+  
   return (
     <div>
       <ContentHeader>
@@ -12,21 +26,22 @@ const Payment = () => {
       <table className="border w-full" border>
         <tr className="border-b">
           <th className="border-l p-5">Patient ID</th>
-          <th className="border-l p-5">Appointment ID</th>
+          <th className="border-l p-5">Patient Name</th>
           <th className="border-l p-5">Email Address</th>
-          <th className="border-l p-5">Amount </th>
+          <th className="border-l p-5">Amount</th>
+          <th className="border-l p-5">Currency</th>
           <th className="border-l p-5">Date </th>
         </tr>
-        {Array(12)
-          .fill("")
-          .map((i) => (
+        {
+        data.map((i) => (
             <tr className="border-b">
-              <th className="border-l p-5">d123</th>
-              <th className="border-l p-5">zh01</th>
-              <th className="border-l p-5">davinchi222@gmail.com</th>
-              <th className="border-l p-5">120000</th>
+              <th className="border-l p-5">{i.patient.id}</th>
+              <th className="border-l p-5">{i.patient.name}</th>
+              <th className="border-l p-5">{i.patient.email}</th>
+              <th className="border-l p-5">{i.amount}</th>
+              <th className="border-l p-5">{i.currency_type}</th>
               <th className="border-l p-5 flex gap-3">
-                {new Date().toLocaleDateString()}
+                {i.created_at.slice(0,10)}
               </th>
             </tr>
           ))}
