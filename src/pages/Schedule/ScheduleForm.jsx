@@ -27,10 +27,7 @@ const ScheduleForm = () => {
      // page reload bomasligiga funksiya
      e.preventDefault();
     //  Zapros
-     const res = await fetch("https://rustammustafoev.jprq.live/api/e-med/schedule", {
-       headers: {
-         auth: "bearer",
-       },
+     const res = await fetch("http://192.168.29.220:9000/api/e-med/schedule", {
        method: "POST",
        body: JSON.stringify({
          data:{
@@ -54,39 +51,77 @@ const ScheduleForm = () => {
      <form onSubmit={onSubmit}>
        {/* title kerak bob qolsa shu component dan foydalanasiz */}
        <ContentHeader>
-         Forma <span className="grow"></span>{" "}
-         <Button onClick={() => navigate(-1)}>Ortga</Button>
+         Add Schedule <span className="grow"></span>{" "}
+         <Button onClick={() => navigate(-1)}>Back</Button>
        </ContentHeader>
        {/* Buyogi inputlar */}
        {/* Hohlasez padding berasiz, p-[son] */}
        <div className="p-10">
-         <input
-           type="text"
-           value={fullName}
-           placeholder="Nimadur"
-           className="border-b p-2 m-2"
-           onChange={setFullName}
-           // majburiy qilsez boladi [required]
-           required
-         />
-         <input
-           type="text"
-           value={fullName}
-           placeholder="Nimadur"
-           className="border-b p-2 m-2"
-           onChange={setFullName}
-         />
-         <input
-           type="text"
-           value={fullName}
-           placeholder="Nimadur"
-           className="border-b p-2 m-2"
-           onChange={setFullName}
-         />
-         <Button>Submit</Button>
-       </div>
-     </form>
-   );
-}
+        <label>Day:</label>
+        
+        <div>
+        <label>
+          <input type="checkbox" name="day" value="Monday"/>
+            Monday
+            </label>
+          <label>
+            <input type="checkbox" name="day" value="Tuesday" />
+            Tuesday
+          </label>
+            <label>
+            <input type="checkbox" name="day" value="Wednesday" />
+            Wednesday
+          </label>
+            <br />
+            <label>
+            <input type="checkbox" name="day" value="Thursday" />
+            Thursday
+          </label>
+            <label>
+            <input type="checkbox" name="day" value="Friday" />
+            Friday
+          </label>
+            <label>
+            <input type="checkbox" name="day" value="Saturday" />
+            Saturday
+          </label>
+            <br />
+          <label>
+            <input type="checkbox" name="day" value="Sunday" />
+            Sunday
+          </label>
+        </div>
+        <br />
+        <label>
+          Set Time:
+          <input type="time" name="from_time" />
+          <input type="time" name="to_time" />
+        </label>
+        <br />
+
+        <label>
+          Time per patient:
+          <input type="number" name="time_per_patient" />
+        </label>
+        <br />
+        <label>
+          Visibility:
+          <input type="radio" name="visibility" value="yes" />
+          Yes
+          <input type="radio" name="visibility" value="no" />
+          No
+        </label>
+        <br />
+
+        <button type="reset" className="bg-red-300 text-white p-2 rounded-md">
+                    Reset
+        </button>
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
+            Submit
+        </button>
+      </div>
+      </form>
+    );
+  };
 
 export default ScheduleForm;

@@ -29,7 +29,7 @@ const PatientForm = () => {
             gender:gender,
         }));
 
-        const res = await fetch("https://rustammustafoev.jprq.live/api/user/patient", {
+        const res = await fetch("http://192.168.29.220:9000/api/user/patient", {
             method:"POST",
             body: JSON.stringify({
                 name: fullName,
@@ -52,7 +52,7 @@ const PatientForm = () => {
         <form onSubmit={onSubmit}>
             <ContentHeader>
                 Add New Patient <span className="grow"></span>{" "}
-                <Button onClick={() => navigate(-1)}>Ortga</Button>
+                <Button onClick={() => navigate(-1)}>Back</Button>
             </ContentHeader>
             <div className="p-10">
                 <input
@@ -125,10 +125,14 @@ const PatientForm = () => {
                     onChange={setAddress}
                     required
                 />
+                 <button type="reset" className="bg-red-300 text-white p-2 rounded-md">
+                    Reset
+        </button>
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
+            Submit
+        </button>
             </div>
-            <div className="p-10">
-                <Button type="submit">Submit</Button>
-            </div>
+            
         </form>
     );
 };

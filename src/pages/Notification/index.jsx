@@ -1,10 +1,10 @@
-import React, {useEffect,useState} from "react";
+import React,{useEffect, useState } from "react";
 import ContentHeader from "../../components/container/ContentHeader";
 import Button from "../../components/ui/Button";
-import { deleted, edit } from "../../assets/images";
+import { deleted, edit, view } from "../../assets/images";
 import { NavLink } from "react-router-dom";
 
-const Patient = () => {
+const Notification = () => {
 
   const [data, setData] = useState([]);
 
@@ -14,36 +14,33 @@ const Patient = () => {
       method: 'GET',
     };
     
-    fetch("http://192.168.29.220:9000/api/user/patient", requestOptions)
+    fetch("http://192.168.29.220:9000/api/e-med/notification", requestOptions)
       .then(response => response.json())
       .then(result => setData(result.results))
   }, []);
+  
   return (
     <div>
       <ContentHeader>
-        Patient List <span className="grow"></span>{" "}<NavLink to="add">
+        SMS List <span className="grow"></span>{" "}<NavLink to="add">
           <Button>Add</Button>
         </NavLink>
       </ContentHeader>
       <table className="border w-full" border>
         <tr className="border-b">
-          <th className="border-l p-5">Patient ID</th>
-          <th className="border-l p-5">Patient Name</th>
-          <th className="border-l p-5">Phone Number</th>
-          <th className="border-l p-5">Email Address </th>
-          <th className="border-l p-5">Birth Date </th>
-          <th className="border-l p-5">Gender </th>
+        <th className="border-l p-5">Receiver</th>
+          <th className="border-l p-5">Provider</th>
+          <th className="border-l p-5">Date Time</th>
+          <th className="border-l p-5">Messages</th>
           <th className="border-l p-5">Actions </th>
         </tr>
         {
         data.map((i) => (
             <tr className="border-b">
-              <th className="border-l p-5">{i.id}</th>
-              <th className="border-l p-5">{i.name}</th>
-              <th className="border-l p-5">{i.phone}</th>
-              <th className="border-l p-5">{i.email}</th>
-              <th className="border-l p-5">{i.birth_date}</th>
-              <th className="border-l p-5">{i.gender}</th>
+              <th className="border-l p-5">{i.doctor.name}</th>
+              <th className="border-l p-5">{i.patient.name}</th>
+              <th className="border-l p-5">{i.created_at}</th>
+              <th className="border-l p-5">{i.message_content}</th>
               <th className="border-l p-5 flex gap-3">
                 <img src={edit} alt="" /> <img src={deleted} alt="" />{" "}
               </th>
@@ -54,4 +51,4 @@ const Patient = () => {
   );
 };
 
-export default Patient;
+export default Notification;

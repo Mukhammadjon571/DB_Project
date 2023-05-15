@@ -37,7 +37,7 @@ const AppointmentForm = () => {
       {/* title kerak bob qolsa shu component dan foydalanasiz */}
       <ContentHeader>
         Appointment <span className="grow"></span>{" "}
-        <Button onClick={() => navigate(-1)}>Ortga</Button>
+        <Button onClick={() => navigate(-1)}>Back</Button>
       </ContentHeader>
       {/* Buyogi inputlar */}
       {/* Hohlasez padding berasiz, p-[son] */}

@@ -14,7 +14,7 @@ const Appointment = () => {
       method: 'GET',
     };
     
-    fetch("https://rustammustafoev.jprq.live/api/e-med/appointment", requestOptions)
+    fetch("http://192.168.29.220:9000/api/e-med/appointment", requestOptions)
       .then(response => response.json())
       .then(result => setData(result.results))
   }, []);

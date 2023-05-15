@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import ContentHeader from "../../components/container/ContentHeader";
 import Button from "../../components/ui/Button";
 import { deleted, edit, view } from "../../assets/images";
+import { NavLink } from "react-router-dom";
 
 const Payment = () => {
 
@@ -13,7 +14,7 @@ const Payment = () => {
       method: 'GET',
     };
     
-    fetch("https://rustammustafoev.jprq.live/api/e-med/payment/history/", requestOptions)
+    fetch("http://192.168.29.220:9000/api/e-med/payment/history/", requestOptions)
       .then(response => response.json())
       .then(result => setData(result.results))
   }, []);
@@ -21,7 +22,10 @@ const Payment = () => {
   return (
     <div>
       <ContentHeader>
-        Payment List <span className="grow"></span> <Button>Add</Button>
+        Payment List <span className="grow"></span>{" "}
+        <NavLink to="add">
+          <Button>Add</Button>
+        </NavLink>
       </ContentHeader>
       <table className="border w-full" border>
         <tr className="border-b">

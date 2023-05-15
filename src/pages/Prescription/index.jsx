@@ -1,7 +1,8 @@
 import React,{useEffect, useState } from "react";
 import ContentHeader from "../../components/container/ContentHeader";
 import Button from "../../components/ui/Button";
-import { deleted, edit, view } from "../../assets/images";
+import { deleted, view } from "../../assets/images";
+import { NavLink } from "react-router-dom";
 
 const Prescription = () => {
 
@@ -13,7 +14,7 @@ const Prescription = () => {
       method: 'GET',
     };
     
-    fetch("https://rustammustafoev.jprq.live/api/e-med/appointment", requestOptions)
+    fetch("http://192.168.29.220:9000/api/e-med/appointment", requestOptions)
       .then(response => response.json())
       .then(result => setData(result.results))
   }, []);
@@ -21,7 +22,10 @@ const Prescription = () => {
   return (
     <div>
       <ContentHeader>
-        Prescription List <span className="grow"></span> <Button>Add</Button>
+        Prescription List <span className="grow"></span>{" "}
+        <NavLink to="add">
+          <Button>Add</Button>
+        </NavLink>
       </ContentHeader>
       <table className="border w-full" border>
         <tr className="border-b">
@@ -36,7 +40,7 @@ const Prescription = () => {
             <tr className="border-b">
               <th className="border-l p-5">{i.id}</th>
               <th className="border-l p-5">{i.name}</th>
-              <th className="border-l p-5">995995324</th>
+              <th className="border-l p-5">{i.phone}</th>
               <th className="border-l p-5">{i.patient.gender}</th>
               <th className="border-l p-5 flex gap-3">
                 <img src={view} alt="" /> <img src={deleted} alt="" />{" "}

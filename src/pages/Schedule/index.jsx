@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import ContentHeader from "../../components/container/ContentHeader";
 import Button from "../../components/ui/Button";
 import { deleted, edit } from "../../assets/images";
+import { NavLink } from "react-router-dom";
 
 const Schedule = () => {
 
@@ -13,14 +14,17 @@ const Schedule = () => {
       method: 'GET',
     };
     
-    fetch("https://rustammustafoev.jprq.live/api/e-med/schedule", requestOptions)
+    fetch("http://192.168.29.220:9000/api/e-med/schedule", requestOptions)
       .then(response => response.json())
       .then(result => setData(result.results))
   }, []);
   return (
     <div>
       <ContentHeader>
-        Schedule List <span className="grow"></span> <Button>Add</Button>
+        Schedule List <span className="grow"></span>{" "}
+        <NavLink to="add">
+          <Button>Add</Button>
+        </NavLink>
       </ContentHeader>
       <table className="border w-full" border>
         <tr className="border-b">

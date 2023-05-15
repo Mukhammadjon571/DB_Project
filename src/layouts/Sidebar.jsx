@@ -43,6 +43,12 @@ const Sidebar = () => {
         >
           Payment
         </NavLink>
+        <NavLink
+          to={"/dashboard/notification"}
+          className="border-b border-white text-gray-dark"
+        >
+          Notifications
+        </NavLink>
       </div>
     </div>
   );
