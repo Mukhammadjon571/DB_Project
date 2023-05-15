@@ -1,10 +1,39 @@
-import React from "react";
+import React, {useState} from "react";
 import ContentHeader from "../../components/container/ContentHeader";
 import Item from "./components/item";
-import { dashIcon,chat, chat1, check1, email, email1, healthInsurance, logo, medicalRecords, patient, prescription } from "../../assets/images";
+import {
+  dashIcon,
+  chat,
+  chat1,
+  check1,
+  email,
+  email1,
+  healthInsurance,
+  logo,
+  medicalRecords,
+  patient,
+  prescription,
+} from "../../assets/images";
 import { ApexChart } from "../../components/ui/Chart";
+import { useAuth } from "../../hooks";
 
 const Dashboard = () => {
+  const [data, setData] = useState([]);
+  const { token, user } = useAuth();
+
+  const getData = async () => {
+    const res = await fetch("jprw/lice", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.ok) {
+      const data = await data.json();
+      setData(data);
+    }
+  };
   return (
     <div>
       <ContentHeader>Dashboard</ContentHeader>
@@ -44,26 +73,10 @@ const Dashboard = () => {
           icon={<img src={check1} alt="" />}
           desc={"Total Prescription"}
         />
-        <Item
-          count={0}
-          icon={<img src={chat} alt="" />}
-          desc={"Total SMS"}
-        />
-        <Item
-          count={0}
-          icon={<img src={chat1} alt="" />}
-          desc={"Today SMS"}
-        />
-        <Item
-          count={0}
-          icon={<img src={chat1} alt="" />}
-          desc={"Custom SMS"}
-        />
-        <Item
-          count={0}
-          icon={<img src={email1} alt="" />}
-          desc={"Auto SMS"}
-        />
+        <Item count={0} icon={<img src={chat} alt="" />} desc={"Total SMS"} />
+        <Item count={0} icon={<img src={chat1} alt="" />} desc={"Today SMS"} />
+        <Item count={0} icon={<img src={chat1} alt="" />} desc={"Custom SMS"} />
+        <Item count={0} icon={<img src={email1} alt="" />} desc={"Auto SMS"} />
         <Item
           count={0}
           icon={<img src={email} alt="" />}

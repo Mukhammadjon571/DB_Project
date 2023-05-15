@@ -18,6 +18,22 @@ const Notification = () => {
       .then(response => response.json())
       .then(result => setData(result.results))
   }, []);
+
+  const deleteData = async(id)=>{
+    const res = await fetch('dsadas' + id,{
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    var requestOptions = {
+      method: 'GET',
+    };
+    fetch("http://192.168.29.220:9000/api/e-med/notification", requestOptions)
+    .then(response => response.json())
+    .then(result => setData(result.results))
+
+  } 
   
   return (
     <div>
@@ -42,7 +58,7 @@ const Notification = () => {
               <th className="border-l p-5">{i.created_at}</th>
               <th className="border-l p-5">{i.message_content}</th>
               <th className="border-l p-5 flex gap-3">
-                <img src={edit} alt="" /> <img src={deleted} alt="" />{" "}
+                <img src={edit} alt="" /> <img src={deleted} onClick={()=>deleteData(i.id)} alt="" />{" "}
               </th>
             </tr>
           ))}

@@ -1,9 +1,12 @@
 import React from "react";
-import { useAuthStore } from "../store";
+const initialState = null;
 
 const useAuth = () => {
-  const { isLogged } = useAuthStore();
-  return <div>useAuth</div>;
+  if (initialState) return initialState;
+  const user = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
+  if (user && token) initialState = { user, token };
+  return { user, token };
 };
 
 export default useAuth;

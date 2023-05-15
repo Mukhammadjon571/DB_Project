@@ -2,13 +2,26 @@ import React from "react";
 import { loginImage } from "../../assets/images";
 import Button from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import { useInput } from "../../hooks/useInput";
 
 const Login = () => {
+  // INputs
+  const [login, setLogin] = useInput('')
+  const [password, setpassword] = useInput('')
+  
   const navigate = useNavigate();
   const onSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://192.168.29.220:9000");
+    const res = await fetch("https://rustammustafoev.jprq.live/user/admin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: "admin", password: "admin" }),
+    });
     if (res.ok) {
+      const data = await res.json();
+      localStorage.setItem("token", data.token);
       navigate("dashboard");
     } else {
       alert("Please chech again!");
@@ -31,10 +44,14 @@ const Login = () => {
             <input
               type="text"
               placeholder="username"
+              onChange={setLogin}
+              value={login}
               className="text-4xl border-b border-gray-dark focus:outline-none placeholder:text-primary"
             />
             <input
-              type="text"
+              type="password"
+              onChange={setpassword}
+              value={password}
               placeholder="password"
               className="text-4xl border-b border-gray-dark focus:outline-none placeholder:text-primary"
             />
