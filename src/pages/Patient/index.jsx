@@ -18,6 +18,9 @@ const Patient = () => {
       .then(response => response.json())
       .then(result => setData(result.results))
   }, []);
+
+  
+
   return (
     <div>
       <ContentHeader>

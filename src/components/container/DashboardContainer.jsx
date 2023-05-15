@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const DashboardContainer = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  if (token) navigate("/login");
+  // if (token) navigate("/login");
   return (
     <div className="flex w-screen">
       <Sidebar />

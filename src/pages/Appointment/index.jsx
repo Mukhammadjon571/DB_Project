@@ -23,9 +23,7 @@ const Appointment = () => {
     <div>
       <ContentHeader>
         Appointment List <span className="grow"></span>{" "}
-        <NavLink to="add">
-          <Button>Add</Button>
-        </NavLink>
+        
       </ContentHeader>
       <table className="border w-full" border>
         <tr className="border-b">
